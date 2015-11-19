@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .hidden{display: none;}
+    </style>
+</head>
+<body>
+    <h1 data-bind='text: loginStatus'>Loading....</h1>
+    <h2 data-bind='text: serverDate'></h2>
+    <button id="statusButton" class="hidden">getStatus</button>
+    <button id="timeButton" class="hidden">getDateTime</button>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
+    <script src="http://localhost:19221/signalr/hubs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" type="text/javascript"></script>
+    <script>
+        function ViewModel() {
+            var self = this;
+            self.loginStatus = ko.observable($('h1').text());
+            self.serverDate = ko.observable("");
+
+            self.initSignalr = function(){
+                var baseSignalrServerURL = 'http://localhost:19221/';
+                $.connection.hub.url = baseSignalrServerURL + 'signalr';
+                var lHub = $.connection.systemHub;
+
+                lHub.client.updateCurrentDate = function(pVal){
+                    self.serverDate(pVal);
+                }
+                lHub.client.updateLoginStatus= function (pVal) {
+                    self.loginStatus(pVal);
+                }
+
+                //Connect to the hub
+                $.connection.hub.start().done(function () {
+                    //Once connected, display button
+                    $('button').toggleClass('hidden');
+                });
+
+                $('#statusButton').click(function () {
+                    lHub.server.isAuthenticated();
+                });
+
+                $('#timeButton').click(function () {
+                    lHub.server.getCurrentDate();
+                });
+            };
+            self.initSignalr();
+            
+        };
+
+        ko.applyBindings(new ViewModel());
+    </script>
+</body>
+</html>

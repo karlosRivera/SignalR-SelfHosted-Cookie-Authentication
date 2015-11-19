@@ -1,0 +1,6 @@
+C:\Users\D\documents\visual studio 2013\Projects\SelfHostedQuestionBot\Frontend\bin\Frontend.dll.config
+C:\Users\D\documents\visual studio 2013\Projects\SelfHostedQuestionBot\Frontend\bin\Frontend.dll
+C:\Users\D\documents\visual studio 2013\Projects\SelfHostedQuestionBot\Frontend\bin\Frontend.pdb
+C:\Users\D\documents\visual studio 2013\Projects\SelfHostedQuestionBot\Frontend\obj\Debug\Frontend.csprojResolveAssemblyReference.cache
+C:\Users\D\documents\visual studio 2013\Projects\SelfHostedQuestionBot\Frontend\obj\Debug\Frontend.dll
+C:\Users\D\documents\visual studio 2013\Projects\SelfHostedQuestionBot\Frontend\obj\Debug\Frontend.pdb
